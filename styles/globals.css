@@ -8,20 +8,21 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.bgimg{
+  background: url('/sidebar-d.svg') no-repeat center center/cover  ;
+/* border: none; */
+  /* height:max-content */
+  /* width: 150px; */
+  /* width: 274; */
+    /* height: 568; */
+
+  /* padding: 1rem; */
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.gridd{
+  display: grid;
+  grid-template-columns: 274px 1fr;
+  padding: 1rem;
+  min-height: 600px;
+  background-color: yellowgreen;
 }
