@@ -43,9 +43,9 @@ const addons = () => {
           <p className=" text-blue-400">+$1/m</p>
         </div>
 
-<div className=" flex justify-between">
+<div className=" flex justify-between mt-20">
   <button>Go Back</button>
-  <button>Next Step</button>
+  <button className=" bg-blue-950 text-white p-3 px-5 rounded-md">Next Step</button>
 </div>
 
       </div>
