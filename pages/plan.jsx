@@ -1,6 +1,9 @@
-import React from "react";
+import { useState } from "react";
+import { Switch } from "@headlessui/react";
 
 export default function plan() {
+  const [enabled, setEnabled] = useState(false);
+
   return (
     <div className=" mx-auto w-[500px]">
       <div className=" my-6">
@@ -36,15 +39,35 @@ export default function plan() {
             <p className=" text-slate-500">$15/mo</p>
           </div>
         </div>
-        
+
+        <div className=" flex justify-between">
+          <p>Monthly</p>
+
+          <Switch
+            checked={enabled}
+            onChange={setEnabled}
+            className={`${
+              enabled ? "bg-blue-600" : "bg-gray-200"
+            } relative inline-flex h-6 w-11 items-center rounded-full`}
+          >
+            <span className="sr-only">Enable notifications</span>
+            <span
+              className={`${
+                enabled ? "translate-x-6" : "translate-x-1"
+              } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+            />
+          </Switch>
+
+          <p>Yearly</p>
+        </div>
       </div>
 
       <div className=" flex justify-between mt-20">
-          <button>Go Back</button>
-          <button className=" bg-blue-950 text-white p-3 px-5 rounded-md">
-            Next Step
-          </button>
-        </div>
+        <button>Go Back</button>
+        <button className=" bg-blue-950 text-white p-3 px-5 rounded-md">
+          Next Step
+        </button>
+      </div>
     </div>
   );
 }
