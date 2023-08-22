@@ -10,13 +10,13 @@ export default function home() {
 
       <form className=" grid gap-6">
           <label className="grid " >Name
-          <input className=" p-4" type="text"/>
+          <input className=" p-1 rounded-md border-2 border-slate-550" type="text"/>
           </label >
-          <label className="grid">Name
-          <input type="text"/>
+          <label className="grid">Email adress
+          <input  className=" p-1 rounded-md border-2 border-slate-550" type="text"/>
           </label>
           <label className="grid" >Phone Number
-          <input type="number"/>
+          <input  className=" p-1 rounded-md border-2 border-slate-550" type="number"/>
           </label>
          
       </form>
