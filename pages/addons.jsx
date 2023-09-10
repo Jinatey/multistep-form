@@ -12,7 +12,7 @@ const addons = () => {
       <div class>
         <div className="  flex justify-between p-4 px-6 items-center border border-black rounded-md  ">
           <div className=" items-center flex gap-5">
-            <input className=" h-5 w-5" type="checkbox" />
+            <input className=" h-5 w-5" type="checkbox" required/>
             <div>
               <p className=" text-blue-950">Online services</p>
               <p className=" text-slate-500">Acess to multipla games</p>
@@ -45,6 +45,8 @@ const addons = () => {
         </div>
 
 <div className=" flex justify-between mt-20">
+
+  
   <button>Go Back</button>
   <button className=" bg-blue-950 text-white p-3 px-5 rounded-md">Next Step</button>
 </div>
