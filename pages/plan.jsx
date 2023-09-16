@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Switch } from "@headlessui/react";
+import { useRouter } from "next/router";
 
 export default function plan() {
   const [enabled, setEnabled] = useState(false);
+
+  const router = useRouter();
 
   return (
     <div className=" mx-auto w-[500px]">
@@ -11,8 +14,14 @@ export default function plan() {
         <p> you have the option of monthly or yearly billinng</p>
       </div>
 
-      <div className=" grid grid-cols-3 gap-4">
-        <div className=" border rounded border-slate-400  p-5">
+      <div className="grid grid-cols-3 gap-4">
+        <div
+          className=" border rounded border-slate-400  p-5"
+          onClick={() => {
+            router.query.option = "arcade";
+            router.push(router);
+          }}
+        >
           <div className=" py-3">
             <img src="/arcade.svg" alt="" />
           </div>

@@ -29,7 +29,7 @@ const Nav = () => {
           <li className=" p-3">
             <Link href="/plan"  className=" items-center grid grid-cols-[25px_auto] gap-6 ">
               
-            <p className={`border text-center rounded-full text h-8 w-8 ${ isPlan ? ' bg-blue-200 text-black':''} `}> 2 </p> 
+            <p className={`border text-center rounded-full text h-8 w-8 ${ isPlan ? ' bg-red-200 text-black':''} `}> 2 </p> 
             <div>
               <p  className=" text-sm  text-slate-200">step 2</p>
               <p> SELECT PLAN </p>
