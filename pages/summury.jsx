@@ -28,18 +28,22 @@ const summury = () => {
           {addons.map((addon, idx) => {
             if (snap.addons[idx]) {
               return (
-                <div className=" flex justify-between  py-6">
-                  <div>
-                    <p>{addon.title}</p>
+                <div>
+                  <div className=" flex justify-between  py-6">
+                    <div>
+                      <p>{addon.title}</p>
+                    </div>
+
+                    <div>
+                      <p>
+                        {snap.duration === "yearly"
+                          ? addon.priceY
+                          : addon.price}
+                      </p>
+                    </div>
                   </div>
 
-                  <div>
-                    <p>
-                      {snap.duration === "yearly" ? addon.priceY : addon.price}
-                    </p>
-                  </div>
                   <p>Total per month {}</p>
-
                 </div>
               );
             }
