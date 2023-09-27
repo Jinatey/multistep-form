@@ -35,7 +35,6 @@ export default function Addons() {
                   } else {
                     state.addons[idx] = false;
                   }
-                  console.log(e.target.checked);
                 }}
               />
               <div>
@@ -47,8 +46,8 @@ export default function Addons() {
             <div>
               <p>
                 {snap.duration === "yearly"
-                  ? addon.priceY
-                  : addon.price}
+                  ? `$${addon.priceY}/yr`
+                  : `$${addon.price}/mo`}
               </p>
             </div>
           </div>

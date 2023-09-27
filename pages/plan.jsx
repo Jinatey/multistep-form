@@ -11,6 +11,7 @@ export default function Plan() {
   const router = useRouter();
 
   const snap = useSnapshot(state);
+  
 
   return (
     <div className=" mx-auto w-[500px]">
@@ -26,7 +27,7 @@ export default function Plan() {
             <div
               key={plan.name}
               className={`border rounded cursor-pointer border-slate-400  p-5${
-                snap.planIndex === idx ? " border-2 border-blue-600 " : ""
+                snap.planIndex === idx ? " border-2 border-blue-950 " : ""
               }`}
               onClick={() => {
                 // router.push({ query: { ...router.query, option: plan.name } });
@@ -37,7 +38,7 @@ export default function Plan() {
               <div className="pt-5">
                 <h1>{plan.name}</h1>
 
-                <p>{snap.duration === "yearly" ? plan.priceY : plan.price}</p>
+                <p>{snap.duration === "yearly" ? `$${plan.priceY}/yr` : `$${plan.price}/mo`}</p>
 
                 {router.query.duration === "yearly" && <p>2 months free</p>}
               </div>
@@ -74,7 +75,7 @@ export default function Plan() {
       </div>
 
       <div className=" flex justify-between mt-20">
-        <button
+        <button className=" text-blue-950 hover:font-bold"
           onClick={() => {
             router.push("/");
           }}
@@ -83,7 +84,7 @@ export default function Plan() {
         </button>
         <button
           onClick={async () => {
-            if (["arcade", "pro", "advanced"].includes(plans[snap.planIndex].name)) {
+            if (["arcade", "pro", "advanced"].includes(plans[snap.planIndex]?.name)) {
               await router.push("/addons");
             } else {
               alert("please  select a plan");

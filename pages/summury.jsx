@@ -1,12 +1,36 @@
 import { useSnapshot } from "valtio";
+import { useRouter } from "next/router";
 
 import { addons, plans } from "@/data";
 import { state } from "@/state";
 
 const summury = () => {
   const snap = useSnapshot(state);
+  const router = useRouter();
 
-  console.log();
+  const selectedPlan = plans[snap.planIndex];
+  const selectedPlanPrice = snap.duration === "yearly"
+  ? selectedPlan?.priceY
+  : selectedPlan?.price;
+
+  // const totalAddonPrice = addons.reduce((acc, curr, idx) => {
+  //   if (snap.addons[idx]) {
+  //     return acc + curr.price;
+  //   }
+
+  //   return acc;
+  // }, 0);
+
+  let totalAddonPrice = 0;
+
+  addons.map((addon, idx) => {
+    if (snap.addons[idx]) {
+      totalAddonPrice +=
+        snap.duration === "yearly" ? addon.priceY : addon.price;
+    }
+  });
+
+  console.log({ totalAddonPrice });
 
   return (
     <div className=" mx-auto w-[500px]">
@@ -18,17 +42,25 @@ const summury = () => {
       <div className=" bg-slate-200  px-6 py-2 rounded-md ">
         <div className="flex justify-between py-6 border-b-2 border-slate-300">
           <div>
-            <p>{plans[snap.planIndex]?.name} </p>
-            <p>change</p>
+            <p>{selectedPlan?.name} </p>
+            <button className=" hover:text-purple-600 hover:underline"
+              onClick={() => {
+                router.push("/plan");
+              }}
+            >
+              change
+            </button>
           </div>
 
-          <div>59</div>
+          <div>
+            {selectedPlanPrice}
+          </div>
         </div>
         <div>
           {addons.map((addon, idx) => {
             if (snap.addons[idx]) {
               return (
-                <div>
+                <div key={addon.title}>
                   <div className=" flex justify-between  py-6">
                     <div>
                       <p>{addon.title}</p>
@@ -42,12 +74,15 @@ const summury = () => {
                       </p>
                     </div>
                   </div>
-
-                  <p>Total per month {}</p>
                 </div>
               );
             }
           })}
+<div className=" flex justify-between">
+<p>Total per month </p>
+<p>{selectedPlanPrice+ totalAddonPrice}</p>
+</div>
+
           {/* <p>{snap.addons[0] === true ? "arcade" : ""} </p>
             <p>{snap.addons[1] === true ? "arcade" : ""} </p>
             <p>{snap.addons[2] === true ? "arcade" : ""} </p> */}
