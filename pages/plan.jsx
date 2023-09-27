@@ -36,18 +36,18 @@ export default function Plan() {
             >
               <img src={plan.image} alt="" />
               <div className="pt-5">
-                <h1>{plan.name}</h1>
+                <h1 className=" font-bold text-blue-950">{plan.name}</h1>
 
-                <p>{snap.duration === "yearly" ? `$${plan.priceY}/yr` : `$${plan.price}/mo`}</p>
+                <p className=" text-slate-500">{snap.duration === "yearly" ? `$${plan.priceY}/yr` : `$${plan.price}/mo`}</p>
 
-                {router.query.duration === "yearly" && <p>2 months free</p>}
+                {snap.duration === "yearly" && <p className=" text-blue-950">2 months free</p>}
               </div>
             </div>
           ))}
         </div>
 
-        <div className=" flex justify-between pt-10">
-          <p>Monthly</p>
+        <div className=" flex justify-center gap-4 p-5 rounded-md mt-10 bg-slate-200">
+          <p className={`font-bold ${snap.duration=== 'monthly'? ' text-blue-950':'text-slate-500'}`}>Monthly</p>
 
           <Switch
             checked={snap.duration === "yearly"}
@@ -59,7 +59,7 @@ export default function Plan() {
               }
             }}
             className={`${
-              snap.duration === "yearly" ? "bg-blue-600" : "bg-gray-200"
+              snap.duration === "yearly" ? "bg-blue-800" : "bg-blue-700"
             } relative inline-flex h-6 w-11 items-center rounded-full`}
           >
             <span className="sr-only">Enable notifications</span>
@@ -70,7 +70,7 @@ export default function Plan() {
             />
           </Switch>
 
-          <p>Yearly</p>
+          <p className={`font-bold ${snap.duration=== 'yearly'? ' text-blue-950':'text-slate-500'}`}>Yearly</p>
         </div>
       </div>
 
@@ -84,13 +84,13 @@ export default function Plan() {
         </button>
         <button
           onClick={async () => {
-            if (["arcade", "pro", "advanced"].includes(plans[snap.planIndex]?.name)) {
+            if (["Arcade", "Pro", "Advanced"].includes(plans[snap.planIndex]?.name)) {
               await router.push("/addons");
             } else {
               alert("please  select a plan");
             }
           }}
-          className=" bg-blue-950 text-white p-3 px-5 rounded-md"
+          className=" bg-blue-950 hover:bg-blue-700 text-white p-3 px-5 rounded-md"
         >
           Next Step
         </button>

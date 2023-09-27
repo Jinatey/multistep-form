@@ -1,7 +1,7 @@
 export const plans = [
-  { name: "arcade", price: 9, priceY: 90, image: "arcade.svg" },
-  { name: "advanced", price: 12, priceY: 120, image: "advanced.svg" },
-  { name: "pro", price: 15, priceY: 150, image: "pro.svg" },
+  { name: "Arcade", price: 9, priceY: 90, image: "arcade.svg" },
+  { name: "Advanced", price: 12, priceY: 120, image: "advanced.svg" },
+  { name: "Pro", price: 15, priceY: 150, image: "pro.svg" },
 ];
 
 export const addons = [

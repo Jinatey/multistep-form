@@ -60,7 +60,7 @@ export default function home() {
         </label>
 
         <div className=" flex justify-end mt-20">
-          <button className=" bg-blue-950 text-white p-3 px-5 rounded-md">
+          <button className=" bg-blue-950 hover:bg-blue-700 text-white p-3 px-5 rounded-md">
             Next Step
           </button>
         </div>

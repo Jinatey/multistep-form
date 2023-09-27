@@ -1,103 +1,40 @@
 import React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 
-
+const navDAta = [
+  { stepName: "YOUR INFO", path: "/" },
+  { stepName: "SELECT PLAN", path: "/plan" },
+  { stepName: "ADDONS", path: "/addons" },
+  { stepName: "SUMMARY", path: "/summary" },
+];
 
 const Nav = () => {
-  const pathname = usePathname();
-  const isAddons = pathname === "/addons";
-  const isPlan = pathname === "/plan";
-  const isSummury = pathname === "/summury";
-  const isInfo = pathname === "/";
   const router = useRouter();
   return (
     <div className="bgimg h-full rounded-lg">
       <div className=" text-white">
         <ul className=" p-5">
-          <li className=" p-3">
-            <button
-              onClick={() => {
-                router.push("/");
-              }}
-              className=" items-center grid grid-cols-[25px_auto] gap-6 "
-            >
-              <p
-                className={`border text-center rounded-full text h-8 w-8 ${
-                  isInfo ? " bg-blue-200 text-black" : ""
-                } `}
-              >
-                1
-              </p>
-              <div>
-                <p className=" text-sm text-slate-200">step 1</p>
-                <p>YOUR INFO</p>
-              </div>
-            </button>
-          </li>
-
-          <li className=" p-3">
-            <button
-              onClick={() => {
-                router.push("/plan");
-              }}
-              className=" items-center grid grid-cols-[25px_auto] gap-6 "
-            >
-              <p
-                className={`border text-center rounded-full text h-8 w-8 ${
-                  isPlan ? " bg-red-200 text-black" : ""
-                } `}
-              >
-                {" "}
-                2{" "}
-              </p>
-              <div>
-                <p className=" text-sm  text-slate-200">step 2</p>
-                <p> SELECT PLAN </p>
-              </div>
-            </button>{" "}
-          </li>
-
-          <li className="p-3">
-            <Link
-              href="/addons"
-              className="items-center grid grid-cols-[25px_auto] gap-6 "
-            >
-              <p
-                className={`border text-center rounded-full text h-8 w-8 ${
-                  isAddons ? " bg-blue-200 text-black" : ""
-                } `}
-              >
-                {" "}
-                3{" "}
-              </p>
-              <div>
-                <p className=" text-sm  text-slate-200">step 3</p>
-                <p> ADD-ONS</p>
-              </div>
-            </Link>{" "}
-          </li>
-
-          <li className="p-3">
-            <Link
-              href="/summury "
-              className=" items-center grid grid-cols-[25px_auto] gap-6 "
-            >
-              <p
-                className={`border text-center rounded-full text h-8 w-8 ${
-                  isSummury ? " bg-blue-200 text-black" : ""
-                } `}
-              >
-                {" "}
-                4{" "}
-              </p>
-              <div>
-                <p className=" text-sm  text-slate-200">step 4</p>
-                <p>SUMMURY</p>
-              </div>
-            </Link>{" "}
-          </li>
+          {navDAta.map((nav, idx) => {
+            return (
+              <li className="p-3">
+                <div className=" items-center grid grid-cols-[25px_auto] gap-6 ">
+                  <p
+                    className={`border text-center rounded-full text h-8 w-8 ${
+                      router.pathname === nav.path
+                        ? " bg-blue-200 text-black"
+                        : ""
+                    } `}
+                  >
+                    {idx + 1}
+                  </p>
+                  <div>
+                    <p className=" text-sm text-slate-200">step {idx + 1}</p>
+                    <>{nav.stepName}</>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

@@ -4,14 +4,13 @@ import { useRouter } from "next/router";
 import { addons, plans } from "@/data";
 import { state } from "@/state";
 
-const summury = () => {
+const summary = () => {
   const snap = useSnapshot(state);
   const router = useRouter();
 
   const selectedPlan = plans[snap.planIndex];
-  const selectedPlanPrice = snap.duration === "yearly"
-  ? selectedPlan?.priceY
-  : selectedPlan?.price;
+  const selectedPlanPrice =
+    snap.duration === "yearly" ? selectedPlan?.priceY : selectedPlan?.price;
 
   // const totalAddonPrice = addons.reduce((acc, curr, idx) => {
   //   if (snap.addons[idx]) {
@@ -39,11 +38,12 @@ const summury = () => {
         <p>Double-check everything looks OK</p>
       </div>
 
-      <div className=" bg-slate-200  px-6 py-2 rounded-md ">
+      <div className=" bg-slate-100  px-6 py-2 rounded-md ">
         <div className="flex justify-between py-6 border-b-2 border-slate-300">
           <div>
-            <p>{selectedPlan?.name} </p>
-            <button className=" hover:text-purple-600 hover:underline"
+            <p className=" font-bold text-blue-950">{selectedPlan?.name} </p>
+            <button 
+              className=" text-slate-500 hover:text-purple-600 hover:underline"
               onClick={() => {
                 router.push("/plan");
               }}
@@ -52,9 +52,7 @@ const summury = () => {
             </button>
           </div>
 
-          <div>
-            {selectedPlanPrice}
-          </div>
+          <div className=" font-bold text-blue-950">{selectedPlanPrice}</div>
         </div>
         <div>
           {addons.map((addon, idx) => {
@@ -69,8 +67,8 @@ const summury = () => {
                     <div>
                       <p>
                         {snap.duration === "yearly"
-                          ? addon.priceY
-                          : addon.price}
+                  ? `$${addon.priceY}/yr`
+                  : `$${addon.price}/mo`}
                       </p>
                     </div>
                   </div>
@@ -78,18 +76,32 @@ const summury = () => {
               );
             }
           })}
-<div className=" flex justify-between">
-<p>Total per month </p>
-<p>{selectedPlanPrice+ totalAddonPrice}</p>
-</div>
-
-          {/* <p>{snap.addons[0] === true ? "arcade" : ""} </p>
-            <p>{snap.addons[1] === true ? "arcade" : ""} </p>
-            <p>{snap.addons[2] === true ? "arcade" : ""} </p> */}
+          <div className=" flex justify-between">
+            <p>Total per month </p>
+            <p>{selectedPlanPrice + totalAddonPrice}</p>
+          </div>
+        </div>
+        <div className="  flex justify-between mt-20">
+          <button
+            className=" text-blue-950 hover:font-bold"
+            onClick={() => {
+              router.push("/plan");
+            }}
+          >
+            Go Back
+          </button>
+          <button
+            onClick={() => {
+              router.push("/form-complete");
+            }}
+            className=" bg-violet-800 hover:bg-violet-600 text-white p-3 px-5 rounded-md"
+          >
+            Confirm
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default summury;
+export default summary;
