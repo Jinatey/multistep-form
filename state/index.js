@@ -4,6 +4,7 @@ export const state = proxy({
   name: "",
   email: "",
   number: "",
-  plan: "",
+  planIndex: null,
   duration: "",
+  addons: [false, false, false],
 });

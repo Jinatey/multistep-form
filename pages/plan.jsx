@@ -1,21 +1,14 @@
-import { useState } from "react";
 import { Switch } from "@headlessui/react";
 import { useRouter } from "next/router";
 
 import { state } from "@/state";
 import { useSnapshot } from "valtio";
+import { plans } from "@/data";
 
-const plans = [
-  { name: "arcade", price: "9$/m", priceY: "90$/y", image: "arcade.svg" },
-  { name: "advanced", price: "12$/m", priceY: "120$/y", image: "advanced.svg" },
-  { name: "pro", price: "15$/m", priceY: "150$/y", image: "pro.svg" },
-];
-
-export default function plan() {
+export default function Plan() {
   // const [enabled, setEnabled] = useState(false);
 
   const router = useRouter();
-  console.log("touer", router);
 
   const snap = useSnapshot(state);
 
@@ -29,14 +22,15 @@ export default function plan() {
         </p>
 
         <div className=" grid grid-cols-3 gap-4">
-          {plans.map((plan) => (
+          {plans.map((plan, idx) => (
             <div
+              key={plan.name}
               className={`border rounded cursor-pointer border-slate-400  p-5${
-                snap.plan === plan.name ? " border-2 border-blue-600 " : ""
+                snap.planIndex === idx ? " border-2 border-blue-600 " : ""
               }`}
               onClick={() => {
                 // router.push({ query: { ...router.query, option: plan.name } });
-                state.plan = plan.name;
+                state.planIndex = idx;
               }}
             >
               <img src={plan.image} alt="" />
@@ -89,7 +83,7 @@ export default function plan() {
         </button>
         <button
           onClick={async () => {
-            if (["arcade", "pro", "advanced"].includes(snap.plan)) {
+            if (["arcade", "pro", "advanced"].includes(plans[snap.planIndex].name)) {
               await router.push("/addons");
             } else {
               alert("please  select a plan");
